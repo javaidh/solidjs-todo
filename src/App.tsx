@@ -1,13 +1,13 @@
 // Solid JS Imports
-import { createSignal} from "solid-js";
+import { createSignal, For} from "solid-js";
 // Styling Imports
 import { css } from "solid-styled-components";
+// Component Imports
+import { Item } from "./item";
 // Type Imports
 import type { Component } from 'solid-js';
 
-const ButtonStyles = css`
-  boder-radius: 4px
-`
+//Styling
 const ContainerStyles = css`
   width: 500px;
   margin: 0 auto;
@@ -17,16 +17,23 @@ const ContainerStyles = css`
   height: 100vh;
 `
 
+// Types
+type TodoItem = {
+    text: string;
+    complete: boolean;
+}
 const App: Component = () => {
-  const [count, setCount] = createSignal(0);
-  const increaseCount = () => {
-    setCount(count() + 1)
-  }
+  const [todos, setTodos] = createSignal<TodoItem[]>([
+      { text: "Wake up from the Dream", complete: false},
+      { text: "Have a new Dream!", complete: true }
+  ]);
+
   return (
     <div class={ContainerStyles}>
-      <h1>Hello World!</h1>
-      <p>The current count {count()}</p>
-      <button class={ButtonStyles} onClick={increaseCount}>Increase Counter</button>
+      <h1>TODOs</h1>
+        <ul>
+            <For each={todos()}>{(todo: TodoItem) => <Item todo={todo} setTodos={setTodos} />}</For>
+        </ul>
     </div>
   );
 };
