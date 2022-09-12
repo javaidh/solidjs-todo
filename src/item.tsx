@@ -23,11 +23,18 @@ export const Item: Component<ItemProps> = (props) => {
             return newTodos;
         })
     }
+    const deleteItem = () => {
+        props.setTodos((todos: TodoItem[]) => {
+            const newTodos = todos.filter((todo) => todo.text !== props.todo.text);
+            return newTodos;
+        })
+    }
     return (
         <li class={itemStyle}>
             <label>
                 <input type="checkbox" checked={props.todo.complete} onChange={changeComplete} />
                 {props.todo.text}
+                <button onClick={deleteItem}>X</button>
             </label>
         </li>
     )
