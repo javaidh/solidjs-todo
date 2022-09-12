@@ -6,7 +6,7 @@ type ItemProps = {
     setTodos: (func: any) => void;
 }
 
-type TodoItem = {
+export type TodoItem = {
     complete: boolean
     text: string;
 }

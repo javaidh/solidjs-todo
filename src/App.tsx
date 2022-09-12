@@ -4,6 +4,7 @@ import { createSignal, For} from "solid-js";
 import { css } from "solid-styled-components";
 // Component Imports
 import { Item } from "./item";
+import { AddTodo } from "./addTodo";
 // Type Imports
 import type { Component } from 'solid-js';
 
@@ -34,6 +35,7 @@ const App: Component = () => {
         <ul>
             <For each={todos()}>{(todo: TodoItem) => <Item todo={todo} setTodos={setTodos} />}</For>
         </ul>
+        <AddTodo setTodos={setTodos} />
     </div>
   );
 };
